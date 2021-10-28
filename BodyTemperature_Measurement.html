@@ -63,11 +63,11 @@
       </div></header>
     <section class="u-clearfix u-custom-color-1 u-section-1" id="sec-4c52">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h2 class="u-text u-text-default u-text-1">Create Body Weight Measurement </h2>
+        <h2 class="u-text u-text-default u-text-1">Create Body Temperature Measurement </h2>
         <p style="font-size: 25px;">Hello, MITW21_TRACK2_P1 ! <br>
         Patient Id : MITWTrack2P1 <br><br>
         監測日期<font  style="color:red">*</font>：<input type="date" id="Effective_Date" name="Effective_Date" style="color:black"><br>
-        體重<font  style="color:red">*</font>：<input type="number" id="BodyWeight_Value" name="BodyWeight_Value" style="color:black" min="0"> kg
+        身高<font  style="color:red">*</font>：<input type="number" id="BodyTemperature_Value" name="BodyTemperature_Value" style="color:black" min="0"> kg
         <a onclick='Submit_Measurement()' class="u-active-palette-3-base u-border-1 u-border-white u-btn u-btn-round u-button-style u-grey-5 u-hover-palette-3-base u-radius-50 u-text-active-white u-text-body-color u-text-hover-white u-btn-1">Submit</a>
         </p>
       </div>
@@ -82,14 +82,14 @@
     </section>
 
     <script>
-      var patient_Id = sessionStorage.getItem("Patient_Id");
+     var patient_Id = sessionStorage.getItem("Patient_Id");
       var VitalSigns_Type = sessionStorage.getItem("VitalSigns_Type");
       var VitalSigns_Code = sessionStorage.getItem("VitalSigns_Code");
 
       //----------------------------------------------------------
       //for : Post body weight vital sign measurement for track-2
       function Submit_Measurement(){
-        if(document.getElementById("BodyWeight_Value").value.trim()!="" && document.getElementById("Effective_Date").value.trim()!="")
+        if(document.getElementById("BodyTemperature_Value").value.trim()!="" && document.getElementById("Effective_Date").value.trim()!="")
         {
           Observation_Track_2.category[0].coding[0].code = category_coding[VitalSigns_Code].code;
           Observation_Track_2.category[0].coding[0].display = category_coding[VitalSigns_Code].display;
@@ -99,7 +99,7 @@
           Observation_Track_2.valueQuantity.code = coding_code[VitalSigns_Type].unit;
           Observation_Track_2.subject.reference = "Patient/"+patient_Id;
 
-          Observation_Track_2.valueQuantity.value = document.getElementById("BodyWeight_Value").value;
+          Observation_Track_2.valueQuantity.value = document.getElementById("BodyTemperature_Value").value;
           Observation_Track_2.effectiveDateTime = document.getElementById("Effective_Date").value;
           HTTPPostData(FHIRrootURL+"/Observation", JSON.stringify(Observation_Track_2));
           EmptyForm();
@@ -112,7 +112,7 @@
       //----------------------------------------------------------
       //for : Post body weight vital sign measurement for track-2
       function EmptyForm(){
-        document.getElementById("BodyWeight_Value").value = "";
+        document.getElementById("BodyTemperature_Value").value = "";
         document.getElementById("Effective_Date").value = "";
       }
       //----------------------------------------------------------

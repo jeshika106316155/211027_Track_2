@@ -70,7 +70,7 @@
           <select id="VitalSigns_Type" onchange="VitalSigns_Onchange()" style="color:black" name="VitalSigns_Type">
             <option value="" disabled="disabled" selected="selected">生理監測數據類型</option>
             <option value="BodyWeight_Measurement.html" style="color:black">Body Weight</option>
-            <option value="http://www.facebook.com" style="color:black">Body Temperature</option>
+            <option value="BodyTemperature_Measurement.html" style="color:black">Body Temperature</option>
             <option value="http://www.google.com/" style="color:black">Blood Glucose Pre Meal</option>
           </select>
           <div>
@@ -104,7 +104,12 @@
         {
           alert("Please select Vital-signs type!");
         }
-        else{window.open(document.getElementById("VitalSigns_Type").options[document.getElementById("VitalSigns_Type").selectedIndex].value);}
+        else{
+          VitalSigns_Code=(document.getElementById("VitalSigns_Type").selectedIndex-1 <= 1)?0:1;
+          sessionStorage.setItem("VitalSigns_Type", document.getElementById("VitalSigns_Type").selectedIndex - 1);
+          sessionStorage.setItem("VitalSigns_Code", VitalSigns_Code);
+          window.open(document.getElementById("VitalSigns_Type").options[document.getElementById("VitalSigns_Type").selectedIndex].value);
+        }
       }
       //----------------------------------------------------------
       
