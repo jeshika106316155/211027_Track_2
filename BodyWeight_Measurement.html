@@ -3,16 +3,19 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="">
+    <meta name="keywords" content="Scenario 1​">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>Contact</title>
+    <title>BodyWeight_Measurement</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="Contact.css" media="screen">
+    <link rel="stylesheet" href="BodyWeight_Measurement.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <script src="setting.js"></script>
+    <script src="HTTP2019.js"></script>
     <meta name="generator" content="Nicepage 3.28.7, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    
     
     <script type="application/ld+json">{
 		"@context": "http://schema.org",
@@ -21,7 +24,7 @@
 		"logo": "images/MITW_logo.png"
 }</script>
     <meta name="theme-color" content="#478ac9">
-    <meta property="og:title" content="Contact">
+    <meta property="og:title" content="BodyWeight_Measurement">
     <meta property="og:type" content="website">
   </head>
   <body class="u-body"><header class="u-clearfix u-header u-header" id="sec-9c23"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
@@ -56,13 +59,78 @@
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
           </div>
         </nav>
-      </div></header> 
+      </div></header>
+    <section class="u-clearfix u-custom-color-1 u-section-1" id="sec-4c52">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h2 class="u-text u-text-default u-text-1">BodyWeight Measurement </h2>
+        <p style="font-size: 25px;">Hello, MITW21_TRACK2_P1 ! <br>
+        Patient Id : MITWTrack2P1 <br><br>
+        監測日期：<input type="date" id="Effective_Date" name="Effective_Date" style="color:black"><br>
+        體重：<input type="number" id="BodyWeight_Value" name="BodyWeight_Value" style="color:black" min="0"> cm
+        <a onclick='Submit_Measurement()' class="u-active-palette-3-base u-border-1 u-border-white u-btn u-btn-round u-button-style u-grey-5 u-hover-palette-3-base u-radius-50 u-text-active-white u-text-body-color u-text-hover-white u-btn-1">Submit</a>
+        </p>
+      </div>
+    </section>
     
     
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-4668"><div class="u-clearfix u-sheet u-sheet-1">
         <p class="u-small-text u-text u-text-variant u-text-1">Team: TCU106-Indonesia<br>Email: 106316156@gms.tcu.edu.tw
         </p>
       </div></footer>
-    <section class="u-backlink u-clearfix u-grey-80"></section>
+    <section class="u-backlink u-clearfix u-grey-80">
+    </section>
+
+    <script>
+      //----------------------------------------------------------
+      //for : Post body weight vital sign measurement for track-2
+      var BodyWeight_Track_2 = {
+        "resourceType": "Observation",
+        "status": "preliminary",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "https://www.hl7.org/fhir/codesystem-observation-category.html",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http ://loinc.org",
+              "code": "29463-7",
+              "display": "Body weights"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/MITWTrack2P1"
+        },
+        "effectiveDateTime" :"",
+        "valueQuantity" : {
+          "value" : 0,
+          "unit" : "kg",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "kg"
+        }
+      }
+      function Submit_Measurement(){
+        BodyWeight_Track_2.valueQuantity.value = document.getElementById("BodyWeight_Value").value;
+        BodyWeight_Track_2.effectiveDateTime = document.getElementById("Effective_Date").value;
+        HTTPPostData(FHIRrootURL+"/Observation", JSON.stringify(BodyWeight_Track_2),manageResponseRet, 1);
+      }
+      //"id": "MITWTrack2OBW1",
+      
+      //HTTPPutData(FHIRrootURL+"/Patient/MITWTrack2P1", JSON.stringify(Patient_Track_2))
+      //----------------------------------------------------------
+      
+
+      function manageResponseRet(count, ret) {alert("aaa");}
+      
+    </script>
+
   </body>
 </html>
