@@ -8,15 +8,15 @@ function HTTPGetData(urlStr, callBack, count) {
         if (HttpObj.readyState === 4) {
             ret = HttpObj.responseText;
             //   alert(ret);
-            callBack(count, ret);
-               alert(ret);
+            callBack(JSON.parse(ret),count);
+            alert(ret);
         }
     }
     HttpObj.send();
 }
 
 //上傳 dataStr 到網路上
-function HTTPPostData(urlStr, dataStr, callBack, count) {
+function HTTPPostData(urlStr, dataStr) {
     var HttpObj = new XMLHttpRequest();
     HttpObj.open("POST", urlStr, true);
     HttpObj.setRequestHeader("Content-type", "application/json+fhir");
@@ -24,7 +24,7 @@ function HTTPPostData(urlStr, dataStr, callBack, count) {
     HttpObj.onreadystatechange = function () {
         if (HttpObj.readyState === 4) {
             ret = HttpObj.responseText;
-            callBack(count, ret);
+            alert("Data post successfully!");
             //document.getElementById("TextArea1").value = ret;
             alert(ret);
         }
@@ -32,7 +32,7 @@ function HTTPPostData(urlStr, dataStr, callBack, count) {
     HttpObj.send(dataStr);
 }
 
-function HTTPPutData(urlStr, dataStr) {
+function HTTPPutData(urlStr, dataStr,callBack,count) {
     var HttpObj = new XMLHttpRequest();
     HttpObj.open("PUT", urlStr, true);
     HttpObj.setRequestHeader("Content-type", "application/json+fhir");
@@ -40,8 +40,9 @@ function HTTPPutData(urlStr, dataStr) {
     HttpObj.onreadystatechange = function () {
         if (HttpObj.readyState === 4) {
             ret = HttpObj.responseText;
-            //document.getElementById("TextArea1").value = ret;
-            alert(ret);
+            alert("Data put successfully!");
+            //alert(ret);
+            callBack(JSON.parse(ret),count);
         }
     }
     HttpObj.send(dataStr);

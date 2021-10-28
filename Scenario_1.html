@@ -13,6 +13,7 @@
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <script src="setting.js"></script>
     <script src="HTTP2019.js"></script>
+    <script src="FhirJSON_Resource.js"></script>
     <meta name="generator" content="Nicepage 3.28.7, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
     
@@ -66,13 +67,18 @@
         <p style="font-size: 25px;">Hello, MITW21_TRACK2_P1 ! <br>
           Patient Id : MITWTrack2P1 <br><br>
           請選擇生理監測數據類型 ：
-          <select onchange="window.open(this.options[this.selectedIndex].value)" name="website">
+          <select id="VitalSigns_Type" onchange="VitalSigns_Onchange()" style="color:black" name="VitalSigns_Type">
             <option value="" disabled="disabled" selected="selected">生理監測數據類型</option>
             <option value="BodyWeight_Measurement.html" style="color:black">Body Weight</option>
-            <option value="http://www.google.com/" style="color:black">Blood Glucose Pre Meal</option>
             <option value="http://www.facebook.com" style="color:black">Body Temperature</option>
+            <option value="http://www.google.com/" style="color:black">Blood Glucose Pre Meal</option>
           </select>
-          </p>
+          <div>
+            <a style="display: inline;" onclick='Create()' class="u-active-palette-3-base u-border-1 u-border-white u-btn u-btn-round u-button-style u-grey-5 u-hover-palette-3-base u-radius-50 u-text-active-white u-text-body-color u-text-hover-white u-btn-1">Create</a>
+            <a style="display: inline;" onclick='Retrieve()' class="u-active-palette-3-base u-border-1 u-border-white u-btn u-btn-round u-button-style u-grey-5 u-hover-palette-3-base u-radius-50 u-text-active-white u-text-body-color u-text-hover-white u-btn-1">Retrieve</a>
+         </div>
+        </p>
+        <div id="grid"></div>
       </div>
     </section>
     
@@ -85,110 +91,83 @@
     </section>
 
     <script>
-      //HTTPGetData(FHIRrootURL+"/Patient", manageResponseRet, 1);
-      
       //----------------------------------------------------------
       //for : Put new patient for track-2
-      var Patient_Track_2={
-        "resourceType": "Patient",
-        "id": "MITWTrack2P1",
-        "identifier": [
-          {
-            "system": "passport",
-            "value": "31195855"
-          }
-        ],
-        "name": [
-          {
-            "family" : "MITW21",
-            "given" :["TRACK2_P1"],
-            "text": "MITW21_TRACK2_P1"
-          }
-        ],
-        "active" : "true",
-        "gender" : "male",
-        "birthDate" : "2020-05-27",
-        "managingOrganization": {
-          "reference": "Organization/MITW.ForPHR"
-        },
-        "telecom": [
-          {
-            "system": "email",
-            "value": "tcu@tcu.edu.tw"
-          },
-          {
-            "system": "phone",
-            "value": "0958000111"
-          }
-        ],
-        "address": [
-          {
-            "use": "home",
-            "text": "花蓮縣花蓮市中央路三段701號",
-            "city": "花蓮縣",
-            "postalCode": "97004",
-            "country": "台灣"
-          }
-        ],
-        "contact": [
-          {
-          "relationship": [
-            {
-              "coding": [
-                {
-                  "system": "http://terminology.hl7.org/CodeSystem/v2-0131",
-                  "code": "N"
-                }
-              ]
-            }
-          ],
-          "name": {
-            "family": "du Marché",
-            "_family": {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/humanname-own-prefix",
-                  "valueString": "VV"
-                }
-              ]
-            },
-            "given": ["Bénédicte"]
-          },
-          "telecom": [
-            {
-              "system": "phone",
-              "value": "+33 (237) 998327"
-            }
-          ],
-          "address": {
-            "use": "home",
-            "type": "both",
-            "line": [
-              "534 Erewhon St"
-            ],
-            "city": "PleasantVille",
-            "district": "Rainbow",
-            "state": "Vic",
-            "postalCode": "3999",
-            "period": {
-              "start": "1974-12-25"
-            }
-          },
-          "gender": "female",
-          "period": {
-            "start": "2012"
-          }
-        }
-      ]
-      }
       //PatientUUID = uuid:c9fe05c1-f723-44ca-994b-36952719df23
-      //HTTPPutData(FHIRrootURL+"/Patient/MITWTrack2P1", JSON.stringify(Patient_Track_2))
+      HTTPPutData(FHIRrootURL+"/Patient/MITWTrack2P1", JSON.stringify(Patient_Track_2),manageResponseRet,1)
       //----------------------------------------------------------
       
-      //Put new patient for track-2
-
-      function manageResponseRet(count, ret) {alert("aaa");}
+      //----------------------------------------------------------
+      //for : Opening window to create vital-signs data
+      function Create(){
+        if(document.getElementById("VitalSigns_Type").options[document.getElementById("VitalSigns_Type").selectedIndex].value=="")
+        {
+          alert("Please select Vital-signs type!");
+        }
+        else{window.open(document.getElementById("VitalSigns_Type").options[document.getElementById("VitalSigns_Type").selectedIndex].value);}
+      }
+      //----------------------------------------------------------
       
+      //----------------------------------------------------------
+      //for : List vital-signs data of patient
+      function Retrieve(){
+        if(document.getElementById("VitalSigns_Type").options[document.getElementById("VitalSigns_Type").selectedIndex].value=="")
+        {
+          alert("Please select Vital-signs type!");
+        }
+        else{
+          document.getElementById("grid").innerHTML = "";
+          HTTPGetData(FHIRrootURL+"/Observation?_sort=date&code="+coding_code[document.getElementById("VitalSigns_Type").selectedIndex - 1].code+"&subject=MITWTrack2P1", manageResponseRet, 2);
+        }
+      }
+      //----------------------------------------------------------
+
+      //----------------------------------------------------------
+      //for : Manage Response from httprequest 
+      function manageResponseRet(ret,count) {
+        if(ret.total==0){
+          document.getElementById("grid").innerHTML = "No data";
+          return ;
+      }
+        if(count==1){
+          sessionStorage.setItem("Patient_Id", ret.id);
+        }
+        else if(count==2){
+          var tbl = document.createElement('table');
+          tbl.appendChild(thead = document.createElement('thead'));
+          tbl.id="myTable";
+          tbl.setAttribute('border', '1');
+          thead.appendChild(th = document.createElement('th'));
+          th.innerHTML = "Observation Id";
+          thead.appendChild(th = document.createElement('th'));
+          th.innerHTML = "Effective date";
+          thead.appendChild(th = document.createElement('th'));
+          th.innerHTML = "Value";
+          tbl.appendChild(tbdy = document.createElement('tbody'));
+          document.getElementById("grid").appendChild(tbl);
+          ret.entry.forEach(entryResource => InsertRow(tbdy,entryResource));
+        }
+      }
+      //----------------------------------------------------------
+
+      //----------------------------------------------------------
+      //for : Insert row to grid 
+      function InsertRow(tbdy,entryResource){
+        tbdy.appendChild(tr = document.createElement('tr'));
+        tr.appendChild(td = document.createElement("td"));
+        td.innerHTML = entryResource.resource.id;
+        tr.appendChild(td = document.createElement("td"));
+        td.innerHTML = entryResource.resource.effectiveDateTime;
+        tr.appendChild(td = document.createElement("td"));
+        td.innerHTML = entryResource.resource.valueQuantity.value +" "+ entryResource.resource.valueQuantity.unit;
+      }
+      //----------------------------------------------------------
+
+      //----------------------------------------------------------
+      //for : Opening window to create vital-signs data
+      function VitalSigns_Onchange(){
+        document.getElementById("grid").innerHTML = "";
+       }
     </script>
 
   </body>

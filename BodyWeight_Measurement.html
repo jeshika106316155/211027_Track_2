@@ -13,6 +13,7 @@
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <script src="setting.js"></script>
     <script src="HTTP2019.js"></script>
+    <script src="FhirJSON_Resource.js"></script>
     <meta name="generator" content="Nicepage 3.28.7, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
     
@@ -62,11 +63,11 @@
       </div></header>
     <section class="u-clearfix u-custom-color-1 u-section-1" id="sec-4c52">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h2 class="u-text u-text-default u-text-1">BodyWeight Measurement </h2>
+        <h2 class="u-text u-text-default u-text-1">Create BodyWeight Measurement </h2>
         <p style="font-size: 25px;">Hello, MITW21_TRACK2_P1 ! <br>
         Patient Id : MITWTrack2P1 <br><br>
-        監測日期：<input type="date" id="Effective_Date" name="Effective_Date" style="color:black"><br>
-        體重：<input type="number" id="BodyWeight_Value" name="BodyWeight_Value" style="color:black" min="0"> cm
+        監測日期<font  style="color:red">*</font>：<input type="date" id="Effective_Date" name="Effective_Date" style="color:black"><br>
+        體重<font  style="color:red">*</font>：<input type="number" id="BodyWeight_Value" name="BodyWeight_Value" style="color:black" min="0"> kg
         <a onclick='Submit_Measurement()' class="u-active-palette-3-base u-border-1 u-border-white u-btn u-btn-round u-button-style u-grey-5 u-hover-palette-3-base u-radius-50 u-text-active-white u-text-body-color u-text-hover-white u-btn-1">Submit</a>
         </p>
       </div>
@@ -81,56 +82,38 @@
     </section>
 
     <script>
+      var patient_Id = sessionStorage.getItem("Patient_Id");
+
       //----------------------------------------------------------
       //for : Post body weight vital sign measurement for track-2
-      var BodyWeight_Track_2 = {
-        "resourceType": "Observation",
-        "status": "preliminary",
-        "category": [
-          {
-            "coding": [
-              {
-                "system": "https://www.hl7.org/fhir/codesystem-observation-category.html",
-                "code": "vital-signs",
-                "display": "Vital Signs"
-              }
-            ]
-          }
-        ],
-        "code": {
-          "coding": [
-            {
-              "system": "http ://loinc.org",
-              "code": "29463-7",
-              "display": "Body weights"
-            }
-          ]
-        },
-        "subject": {
-          "reference": "Patient/MITWTrack2P1"
-        },
-        "effectiveDateTime" :"",
-        "valueQuantity" : {
-          "value" : 0,
-          "unit" : "kg",
-          "system" : "http://unitsofmeasure.org",
-          "code" : "kg"
+      function Submit_Measurement(){
+        if(document.getElementById("BodyWeight_Value").value.trim()!="" && document.getElementById("Effective_Date").value.trim()!="")
+        {
+          Observation_Track_2.category[0].coding[0].code = category_coding[0].code;
+          Observation_Track_2.category[0].coding[0].display = category_coding[0].display;
+          Observation_Track_2.code.coding[0].code = coding_code[0].code;
+          Observation_Track_2.code.coding[0].display = coding_code[0].display;
+          Observation_Track_2.valueQuantity.unit = coding_code[0].unit;
+          Observation_Track_2.valueQuantity.code = coding_code[0].unit;
+          Observation_Track_2.subject.reference = "Patient/"+patient_Id;
+
+          Observation_Track_2.valueQuantity.value = document.getElementById("BodyWeight_Value").value;
+          Observation_Track_2.effectiveDateTime = document.getElementById("Effective_Date").value;
+          HTTPPostData(FHIRrootURL+"/Observation", JSON.stringify(Observation_Track_2));
+          EmptyForm();
+        }
+        else{
+          alert("Please fill all the input box!");
         }
       }
-      function Submit_Measurement(){
-        BodyWeight_Track_2.valueQuantity.value = document.getElementById("BodyWeight_Value").value;
-        BodyWeight_Track_2.effectiveDateTime = document.getElementById("Effective_Date").value;
-        HTTPPostData(FHIRrootURL+"/Observation", JSON.stringify(BodyWeight_Track_2),manageResponseRet, 1);
-      }
-      //"id": "MITWTrack2OBW1",
-      
-      //HTTPPutData(FHIRrootURL+"/Patient/MITWTrack2P1", JSON.stringify(Patient_Track_2))
       //----------------------------------------------------------
-      
-
-      function manageResponseRet(count, ret) {alert("aaa");}
-      
+      //----------------------------------------------------------
+      //for : Post body weight vital sign measurement for track-2
+      function EmptyForm(){
+        document.getElementById("BodyWeight_Value").value = "";
+        document.getElementById("Effective_Date").value = "";
+      }
+      //----------------------------------------------------------
     </script>
-
   </body>
 </html>
