@@ -24,7 +24,7 @@ function HTTPPostData(urlStr, dataStr) {
     HttpObj.onreadystatechange = function () {
         if (HttpObj.readyState === 4) {
             ret = HttpObj.responseText;
-            alert("Data post successfully!");
+            alert("Upload Success!");
             //document.getElementById("TextArea1").value = ret;
             alert(ret);
         }

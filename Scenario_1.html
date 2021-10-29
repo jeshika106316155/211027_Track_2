@@ -64,14 +64,14 @@
     <section class="u-clearfix u-custom-color-1 u-section-1" id="sec-4c52">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h2 class="u-text u-text-default u-text-1">Scenario 1 - General Vital-Sign </h2>
-        <p style="font-size: 25px;">Hello, MITW21_TRACK2_P1 ! <br>
-          Patient Id : MITWTrack2P1 <br><br>
+        <p style="font-size: 25px;">
+          Patient Id : <input type="text" id="PatientId_Box" name="PatientId_Box" style="color:black" disabled><br><br>
           請選擇生理監測數據類型 ：
           <select id="VitalSigns_Type" onchange="VitalSigns_Onchange()" style="color:black" name="VitalSigns_Type">
             <option value="" disabled="disabled" selected="selected">生理監測數據類型</option>
             <option value="BodyWeight_Measurement.html" style="color:black">Body Weight</option>
             <option value="BodyTemperature_Measurement.html" style="color:black">Body Temperature</option>
-            <option value="http://www.google.com/" style="color:black">Blood Glucose Pre Meal</option>
+            <option value="BloodGlucosePreMeal_Measurement.html" style="color:black">Blood Glucose Pre Meal</option>
           </select>
           <div>
             <a style="display: inline;" onclick='Create()' class="u-active-palette-3-base u-border-1 u-border-white u-btn u-btn-round u-button-style u-grey-5 u-hover-palette-3-base u-radius-50 u-text-active-white u-text-body-color u-text-hover-white u-btn-1">Create</a>
@@ -96,7 +96,8 @@
       //PatientUUID = uuid:c9fe05c1-f723-44ca-994b-36952719df23
       HTTPPutData(FHIRrootURL+"/Patient/MITWTrack2P1", JSON.stringify(Patient_Track_2),manageResponseRet,1)
       //----------------------------------------------------------
-      
+      var patient_Id = sessionStorage.getItem("Patient_Id");
+      document.getElementById("PatientId_Box").value = patient_Id;
       //----------------------------------------------------------
       //for : Opening window to create vital-signs data
       function Create(){
@@ -158,9 +159,12 @@
       //----------------------------------------------------------
       //for : Insert row to grid 
       function InsertRow(tbdy,entryResource){
+        var resourceId_Link = document.createElement('a');
+        resourceId_Link.setAttribute("onclick", "GoDisplayObs('Observation','"+entryResource.resource.id+"')")
+        resourceId_Link.innerHTML = entryResource.resource.id;
         tbdy.appendChild(tr = document.createElement('tr'));
         tr.appendChild(td = document.createElement("td"));
-        td.innerHTML = entryResource.resource.id;
+        td.appendChild(resourceId_Link);
         tr.appendChild(td = document.createElement("td"));
         td.innerHTML = entryResource.resource.effectiveDateTime;
         tr.appendChild(td = document.createElement("td"));
@@ -169,10 +173,22 @@
       //----------------------------------------------------------
 
       //----------------------------------------------------------
+      //for : Insert row to grid
+      function GoDisplayObs(resourceName,resourceId){
+        //sessionStorage.setItem("ScenarioNo", 1);
+        //sessionStorage.setItem("resourceName", resourceName);
+        //sessionStorage.setItem("resourceId", resourceId);
+        //window.open("Display_Observation.html");
+        window.open(FHIRrootURL+"/"+resourceName+"/"+resourceId);
+      }
+      //----------------------------------------------------------
+
+      //----------------------------------------------------------
       //for : Opening window to create vital-signs data
       function VitalSigns_Onchange(){
         document.getElementById("grid").innerHTML = "";
        }
+      //----------------------------------------------------------
     </script>
 
   </body>

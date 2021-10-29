@@ -6,9 +6,9 @@
     <meta name="keywords" content="Scenario 1​">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>BodyTemperature_Measurement</title>
+    <title>BloodGlucosePreMeal_Measurement</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
-    <link rel="stylesheet" href="BodyTemperature_Measurement.css" media="screen">
+    <link rel="stylesheet" href="BloodGlucosePreMeal_Measurement.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <script src="setting.js"></script>
@@ -26,7 +26,7 @@
 		"logo": "images/MITW_logo.png"
 }</script>
     <meta name="theme-color" content="#478ac9">
-    <meta property="og:title" content="BodyTemperature_Measurement">
+    <meta property="og:title" content="BloodGlucosePreMeal_Measurement">
     <meta property="og:type" content="website">
   </head>
   <body class="u-body"><header class="u-clearfix u-header u-header" id="sec-9c23"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
@@ -64,11 +64,11 @@
       </div></header>
     <section class="u-clearfix u-custom-color-1 u-section-1" id="sec-4c52">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h2 class="u-text u-text-default u-text-1">Create Body Temperature Measurement </h2>
+        <h2 class="u-text u-text-default u-text-1">Create Blood Glucose Pre Meal Measurement </h2>
         <p style="font-size: 25px;">
         Patient Id : <input type="text" id="PatientId_Box" name="PatientId_Box" style="color:black" disabled><br><br>
         監測日期<font  style="color:red">*</font>：<input type="date" id="Effective_Date" name="Effective_Date" style="color:black"><br>
-        身高<font  style="color:red">*</font>：<input type="number" id="Measure_Value" name="Measure_Value" style="color:black" min="0"> Cel
+        餐前血糖<font  style="color:red">*</font>：<input type="number" id="Measure_Value" name="Measure_Value" style="color:black" min="0"> mg/dL
         <a onclick='Submit_Measurement()' class="u-active-palette-3-base u-border-1 u-border-white u-btn u-btn-round u-button-style u-grey-5 u-hover-palette-3-base u-radius-50 u-text-active-white u-text-body-color u-text-hover-white u-btn-1">Submit</a>
         </p>
       </div>
@@ -90,7 +90,6 @@
       var VitalSigns_Type = sessionStorage.getItem("VitalSigns_Type");
       var VitalSigns_Code = sessionStorage.getItem("VitalSigns_Code");
       document.getElementById("PatientId_Box").value = patient_Id;
-
       //----------------------------------------------------------
       //for : Post body weight vital sign measurement for track-2
       function EmptyForm(){

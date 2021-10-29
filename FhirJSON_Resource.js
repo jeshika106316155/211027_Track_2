@@ -24,7 +24,7 @@ var coding_code = [
     {
         "code": "88365-2",
         "display": "Glucose pre-meal (Bld) [Mass/Vol]",
-        "unit" : "cm"
+        "unit" : "mg/dL"
     }
 ]
 //Fhir Patient JSON 紀錄做生理監測的病人 
