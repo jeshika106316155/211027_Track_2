@@ -40,7 +40,7 @@ function HTTPPutData(urlStr, dataStr,callBack,count) {
     HttpObj.onreadystatechange = function () {
         if (HttpObj.readyState === 4) {
             ret = HttpObj.responseText;
-            alert("Data put successfully!");
+            //alert("Data put successfully!");
             //alert(ret);
             callBack(JSON.parse(ret),count);
         }
@@ -60,7 +60,5 @@ function HTTPDeleteData(urlStr) {
             alert(ret);
         }
     }
-
-
     HttpObj.send(null);
 }
