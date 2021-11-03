@@ -96,8 +96,6 @@
       //PatientUUID = uuid:c9fe05c1-f723-44ca-994b-36952719df23
       HTTPPutData(FHIRrootURL+"/Patient/MITWTrack2P1", JSON.stringify(Patient_Track_2),manageResponseRet,1)
       //----------------------------------------------------------
-      var patient_Id = sessionStorage.getItem("Patient_Id");
-      document.getElementById("PatientId_Box").value = patient_Id;
       //----------------------------------------------------------
       //for : Opening window to create vital-signs data
       function Create(){
@@ -137,7 +135,9 @@
       }
         if(count==1){
           alert("Patient login success!");
+          var patient_Id = sessionStorage.getItem("Patient_Id");
           sessionStorage.setItem("Patient_Id", ret.id);
+          document.getElementById("PatientId_Box").value = patient_Id;
         }
         else if(count==2){
           var tbl = document.createElement('table');

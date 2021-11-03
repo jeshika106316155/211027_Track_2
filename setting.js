@@ -1,4 +1,5 @@
-﻿var FHIRrootURL = "http://203.64.84.213:8080/fhir";
+﻿var FHIRrootURL = "http://192.168.50.5:10058/api";
+//"http://203.64.84.213:8080/fhir";
 //"https://api.mitw.dicom.org.tw/fhir";
 //"http://hapi.fhir.org/baseR4";
 
@@ -8,7 +9,7 @@
 // "http://hapi.fhir.org/baseDstu3"
 
 // "http://hapi.fhir.org";
-
+var FHIRtoken = "Bearer 87944918-1f86-418e-8418-398e2e4ddee6";
 /* 
 post Patioent, Observation....
  http://hapi.fhir.org/baseDstu3/Patient

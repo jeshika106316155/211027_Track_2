@@ -3,12 +3,12 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Scenario 2​">
+    <meta name="keywords" content="Scenario 3​">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>Scenario_2</title>
+    <title>Scenario_3</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="Scenario_2.css" media="screen">
+<link rel="stylesheet" href="Scenario_3.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <script src="setting.js"></script>
@@ -26,7 +26,7 @@
 		"logo": "images/MITW_logo.png"
 }</script>
     <meta name="theme-color" content="#478ac9">
-    <meta property="og:title" content="Scenario_2">
+    <meta property="og:title" content="Scenario_3">
     <meta property="og:type" content="website">
   </head>
   <body class="u-body"><header class="u-clearfix u-header u-header" id="sec-9c23"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
@@ -64,23 +64,28 @@
       </div></header>
     <section class="u-clearfix u-custom-color-1 u-section-1" id="sec-8a9f">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h2 class="u-text u-text-default u-text-1">Scenario 2 Vital-Signs With Medication -Heart rate</h2>
+        <h2 class="u-text u-text-default u-text-1">Scenario 3 Bone Mineral Density Test</h2>
         <p style="font-size: 25px;">
           <form id="Observation" name="Observation" style="font-size: 20px;">
-            MedicationRequest<font  style="color:red">*</font>：<input type="text" id="Measure_Value" name="Measure_Value" style="color:black" min="0"> ex: MITWTrack2MR1<br>
-            Status<font  style="color:red">*</font>：<input type="text" id="Measure_Value" name="Measure_Value" style="color:black" min="0"> ex: preliminary<br>
+            MedicationRequest<font  style="color:red">*</font>：<input type="text" id="Measure_Value" name="Measure_Value" style="color:black" min="0" value="MITWTrack2MR1"> ex: MITWTrack2MR1<br>
+            Status<font  style="color:red">*</font>：<input type="text" id="Measure_Value" name="Measure_Value" style="color:black" min="0" value="final"> ex: preliminary<br>
             Category:
-            Code<font  style="color:red">*</font>：<input type="text" id="Measure_Value" name="Measure_Value" style="color:black" min="0"> ex: vital-signs &emsp;&emsp;&emsp;&emsp;
-            Display<font  style="color:red">*</font>：<input type="text" id="Measure_Value" name="Measure_Value" style="color:black" min="0"> ex: Vital Signs<br>
-            Vital-sign Code:
-            Code<font  style="color:red">*</font>：<input type="text" id="Measure_Value" name="Measure_Value" style="color:black" min="0"> ex: 8867-4 &emsp;&emsp;&emsp;&emsp;
-            Display<font  style="color:red">*</font>：<input type="text" id="Measure_Value" name="Measure_Value" style="color:black" min="0"> ex: Heart rate<br>
-            Patient Id : <input type="text" id="PatientId_Box" name="PatientId_Box" style="color:black" disabled><br><br>
+            Code<font  style="color:red">*</font>：<input type="text" id="Measure_Value" name="Measure_Value" style="color:black" min="0" value="vital-signs"> ex: Image &emsp;&emsp;&emsp;&emsp;
+            Display<font  style="color:red">*</font>：<input type="text" id="Measure_Value" name="Measure_Value" style="color:black" min="0" value="Vital Signs"> ex: Image<br>
+            Code:
+            Code<font  style="color:red">*</font>：<input type="text" id="Measure_Value" name="Measure_Value" style="color:black" min="0" value=""> ex: 38263-0 &emsp;&emsp;&emsp;&emsp;
+            Display<font  style="color:red">*</font>：<input type="text" id="Measure_Value" name="Measure_Value" style="color:black" min="0" value=""> ex: DXA Femur [T-score] Bone density<br>
+            Patient Id <font  style="color:red">*</font>: <input type="text" id="PatientId_Box" name="PatientId_Box" style="color:black" ><br><br>
             監測日期<font  style="color:red">*</font>：<input type="date" id="Effective_Date" name="Effective_Date" style="color:black"><br>
-            Rate<font  style="color:red">*</font>：<input type="number" id="Measure_Value" name="Measure_Value" style="color:black" min="0"> ex.70 <br>
-            Unit<font  style="color:red">*</font>：<input type="text" id="Measure_Value" name="Measure_Value" style="color:black" min="0"> ex. /min <br><br>
+            Bodysite:
+            Code<font  style="color:red">*</font>：<input type="text" id="Measure_Value" name="Measure_Value" style="color:black" min="0" value="LL5036-0"> ex:LL5036-0&emsp;&emsp;&emsp;&emsp;
+            Display<font  style="color:red">*</font>：<input type="text" id="Measure_Value" name="Measure_Value" style="color:black" min="0" value="​Ward`s area"> ex: ​Ward`s area​<br>
+            Text Id <font  style="color:red">*</font>: <input type="text" id="PatientId_Box" name="PatientId_Box" style="color:black" value="Ward 三角">ex:Ward 三角<br>
+            
+            Value<font  style="color:red">*</font>：<input type="number" id="Measure_Value" name="Measure_Value" style="color:black" min="0" value="45"> ex.70 <br>
+            Unit<font  style="color:red">*</font>：<input type="text" id="Measure_Value" name="Measure_Value" style="color:black" min="0" value="mmHg"> ex. {T-score} <br><br>
           <div>
-            <a style="display: inline;" id="Observation" onclick='Submit_Measurement(this,2)' class="u-active-palette-3-base u-border-1 u-border-white u-btn u-btn-round u-button-style u-grey-5 u-hover-palette-3-base u-radius-50 u-text-active-white u-text-body-color u-text-hover-white u-btn-1">Create</a>
+            <a style="display: inline;" id="Observation" onclick='Submit_Measurement(this,3)' class="u-active-palette-3-base u-border-1 u-border-white u-btn u-btn-round u-button-style u-grey-5 u-hover-palette-3-base u-radius-50 u-text-active-white u-text-body-color u-text-hover-white u-btn-1">Create</a>
          </div>
          </form>
         </p>
@@ -111,8 +116,12 @@
       //PatientUUID = uuid:c9fe05c1-f723-44ca-994b-36952719df23
       HTTPPutData(FHIRrootURL+"/Patient/MITWTrack2P1", JSON.stringify(Patient_Track_2),manageResponseRet,1)
       HTTPPutData(FHIRrootURL+"/Practitioner/MITWTrack3Pr1", JSON.stringify(Practitioner_Track_3),manageResponseRet,3)
-      HTTPPutData(FHIRrootURL+"/MedicationRequest/MITWTrack2MR1", JSON.stringify(MedicationRequest_Track_3),manageResponseRet,3)
+      //HTTPPutData(FHIRrootURL+"/MedicationRequest/MITWTrack2MR1", JSON.stringify(MedicationRequest_Track_3),manageResponseRet,3)
+      var get=FHIRrootURL+"/Patient?name=MITW21_TRACK2_P1&active=true"
+      //"http://192.168.50.5:10058/api/Observation?subject=MITWTrack2P1&based-on=MITWTrack2MR1&code=29463-7&date=gt2021-11-01&date=lt2021-11-30"
+      HTTPGetData(get,manageResponseRet,3)
 
+      //HTTPGetData(FHIRrootURL+"/Patient?name=MITW21_TRACK2_P1", JSON.stringify(MedicationRequest_Track_3),manageResponseRet,3)
       //----------------------------------------------------------
       //----------------------------------------------------------
       //for : Opening window to create vital-signs data
@@ -194,7 +203,7 @@
         tr.appendChild(td = document.createElement("td"));
         td.innerHTML = entryResource.resource.effectiveDateTime;
         tr.appendChild(td = document.createElement("td"));
-        td.innerHTML = entryResource.resource.valueQuantity.value +" "+ entryResource.resource.valueQuantity.unit;
+        //td.innerHTML = entryResource.resource.valueQuantity.value +" "+ entryResource.resource.valueQuantity.unit;
       }
       //----------------------------------------------------------
 

@@ -66,11 +66,24 @@
       <div class="u-clearfix u-sheet u-sheet-1">
         <h2 class="u-text u-text-default u-text-1">Create Body Weight Measurement </h2>
         <p style="font-size: 25px;">
-        Patient Id : <input type="text" id="PatientId_Box" name="PatientId_Box" style="color:black" disabled><br><br>
-        監測日期<font  style="color:red">*</font>：<input type="date" id="Effective_Date" name="Effective_Date" style="color:black"><br>
-        體重<font  style="color:red">*</font>：<input type="number" id="Measure_Value" name="Measure_Value" style="color:black" min="0"> kg
-        <a onclick='Submit_Measurement()' class="u-active-palette-3-base u-border-1 u-border-white u-btn u-btn-round u-button-style u-grey-5 u-hover-palette-3-base u-radius-50 u-text-active-white u-text-body-color u-text-hover-white u-btn-1">Submit</a>
-        </p>
+          <form id="Observation" name="Observation" style="font-size: 20px;">
+            Status<font  style="color:red">*</font>：<input type="text" id="Measure_Value" name="Measure_Value" style="color:black" min="0" value="final"> ex: final<br>
+            Category:
+            Code<font  style="color:red">*</font>：<input type="text" id="Measure_Value" name="Measure_Value" style="color:black" min="0" value="vital-signs"> ex: vital-signs &emsp;&emsp;&emsp;&emsp;
+            Display<font  style="color:red">*</font>：<input type="text" id="Measure_Value" name="Measure_Value" style="color:black" min="0" value="Vital Signs"> ex: Vital Signs<br>
+            Code:
+            Code<font  style="color:red">*</font>：<input type="text" id="Measure_Value" name="Measure_Value" style="color:black" min="0" value="29463-7"> ex: 29463-7 &emsp;&emsp;&emsp;&emsp;
+            Display<font  style="color:red">*</font>：<input type="text" id="Measure_Value" name="Measure_Value" style="color:black" min="0" value="Body weights"> ex: Body weights<br>
+            Patient Id <font  style="color:red">*</font>: <input type="text" id="PatientId_Box" name="PatientId_Box" style="color:black" disabled><br><br>
+            監測日期<font  style="color:red">*</font>：<input type="date" id="Effective_Date" name="Effective_Date" style="color:black"><br>
+            
+            Value<font  style="color:red">*</font>：<input type="number" id="Measure_Value" name="Measure_Value" style="color:black" min="0" value=45> ex.70 <br>
+            Unit<font  style="color:red">*</font>：<input type="text" id="Measure_Value" name="Measure_Value" style="color:black" min="0" value="kg"> ex.kg <br><br>
+          <div>
+            <a style="display: inline;" id="Observation" onclick='Submit_Measurement(this,1)' class="u-active-palette-3-base u-border-1 u-border-white u-btn u-btn-round u-button-style u-grey-5 u-hover-palette-3-base u-radius-50 u-text-active-white u-text-body-color u-text-hover-white u-btn-1">Create</a>
+         </div>
+         </form>  
+      </p>
       </div>
     </section>
     

@@ -66,11 +66,13 @@
       <div class="u-clearfix u-sheet u-sheet-1">
         <h2 class="u-text u-text-default u-text-1">Create Blood Glucose Pre Meal Measurement </h2>
         <p style="font-size: 25px;">
-        Patient Id : <input type="text" id="PatientId_Box" name="PatientId_Box" style="color:black" disabled><br><br>
+          <form id="Observation" name="Observation" style="font-size: 20px;">
+          Patient Id : <input type="text" id="PatientId_Box" name="PatientId_Box" style="color:black" disabled><br><br>
         監測日期<font  style="color:red">*</font>：<input type="date" id="Effective_Date" name="Effective_Date" style="color:black"><br>
         餐前血糖<font  style="color:red">*</font>：<input type="number" id="Measure_Value" name="Measure_Value" style="color:black" min="0"> mg/dL
-        <a onclick='Submit_Measurement()' class="u-active-palette-3-base u-border-1 u-border-white u-btn u-btn-round u-button-style u-grey-5 u-hover-palette-3-base u-radius-50 u-text-active-white u-text-body-color u-text-hover-white u-btn-1">Submit</a>
-        </p>
+        <a id="Observation" onclick='Submit_Measurement(this,1)' class="u-active-palette-3-base u-border-1 u-border-white u-btn u-btn-round u-button-style u-grey-5 u-hover-palette-3-base u-radius-50 u-text-active-white u-text-body-color u-text-hover-white u-btn-1">Submit</a>
+      </form>  
+      </p>
       </div>
     </section>
     
